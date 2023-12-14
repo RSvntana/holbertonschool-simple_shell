@@ -9,6 +9,6 @@
 #include <sys/wait.h>
 
 int main(void);
-int display_prompt();
+int display_prompt(void);
 
 #endif
