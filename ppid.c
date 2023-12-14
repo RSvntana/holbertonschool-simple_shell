@@ -7,8 +7,8 @@
 
 int main(void)
 {
-pid_t my_papapid;
-my_papapid = getpid();
-printf("%u\n", my_papapid);
+pid_t my_ppid;
+my_ppid = getppid();
+printf("%u\n", my_ppid);
 return(0);
 }
