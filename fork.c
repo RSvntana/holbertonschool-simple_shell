@@ -24,17 +24,16 @@ int main(void)
     if (child_pid == 0)
     {
         // Code for the child process
-        printf("This is the child process\n");
+        printf("This is the child process (PID: %d)\n", getpid());
     }
     else
     {
         // Code for the parent process
-        printf("This is the parent process\n");
+        printf("This is the parent process (PID: %d) of child %d\n", getpid(), child_pid);
     }
 
     // This part of the code is executed by both parent and child
     printf("After fork, both processes continue running from here\n");
 
-    return (0);
+    return 0;
 }
-
