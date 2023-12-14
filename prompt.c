@@ -2,10 +2,10 @@
 
 /**
  * display_prompt - displays the shells prompt
- * Return - Success (0)
+ * Return: Success (0)
 */
 
-int display_prompt()
+int display_prompt(void)
 {
 char *input = NULL;
 size_t input_size = 0;
@@ -16,8 +16,8 @@ printf("Simple SHell $ ");/*shell dsiplay*/
 
 if (getline(&input, &input_size, stdin) == -1)
 {
-    printf("Error readinf input, Exit Shell.\n");
-    break;/*handles error or end*/
+printf("Error reading input, Exit Shell.\n");
+break;/*handles error or end*/
 }
 
 input[strcspn(input, "\n")] = '\0';/*remove newline char  from input*/
@@ -29,6 +29,6 @@ break;/*Checks if user wishes to exit*/
 }
 printf("ENTERED: %s\n", input);/*this echoes the input*/
 }
-free(input);/*frees dynam alloc memory*/
+free(input);/*free dynam alloc memory*/
 return (0);
 }
