@@ -9,7 +9,7 @@
 #include <sys/wait.h>
 
 int main(void);
-int display_prompt(void);
+void display_prompt(void);
 
 
 #endif
