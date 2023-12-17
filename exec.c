@@ -20,7 +20,7 @@ void display_prompt(void)
     }
 }
 }
-void parse_input(const char *input,  *parsed) 
+void parse_input(const char *input, ParsedInput *parsed) 
 {
    
     strcpy(parsed->command, "");
