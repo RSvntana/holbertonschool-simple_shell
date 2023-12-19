@@ -11,12 +11,12 @@
 #include <sys/stat.h>
 
 int main(int ac, char **av, char **env);
-char *cut(char *str);
-void Tokenize(char *tok, char **env);
-void exec_comd(char *command, char **env);
-void free_tok(char **tok, int index);
-void free_paths(char **paths, int n_paths);
+char *trim(char *str);
+void Tokenize(char *token, char **env);
+void exec_com(char *comd, char **env);
+void free_token(char **tok, int index);
+void free_paths(char **paths, int number_paths);
 char *get_path(char *comd_name);
 void child_make(char **tokens, char **env);
 
-#endif 
+#endif /* SHELL_H */
