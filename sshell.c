@@ -25,6 +25,7 @@ int main(int ac, char **av, char **env)
 		/* Trim leading and trailing whitespace */
 		trimmed = trim(input);
 		if (strcmp(trimmed, "exit") == 0)
+        printf("Exiting... BYE BYE\n");
 			break;
 		if (trimmed[0] == '\0')
 			continue;
@@ -35,11 +36,11 @@ int main(int ac, char **av, char **env)
 }
 
 /**
- * trim - Remove leading and trailing whitespace from a string
+ * cut - Remove leading and trailing whitespace from a string
  * @str: The string to trim
  * Return: A pointer to the trimmed string
  */
-char *trim(char *str)
+char *cut(char *str)
 {
 	char *end = str + strlen(str) - 1; /*Pointer to the end of the string */
 
@@ -58,31 +59,31 @@ char *trim(char *str)
 }
 
 /**
- * free_token - Frees memory allocated for token array and token strings
+ * free_tok - Frees memory allocated for token array and token strings
  * @tokI: The token array to be freed
  * @counter: The number of tokens in the array
  */
-void free_token(char **tokI, int counter)
+void free_tok(char **tok, int index)
 {
 	int i;
 
-	for (i = 0; i < counter; i++)
+	for (i = 0; i < index; i++)
 	{
-		free(tokI[i]);
+		free(tok[i]);
 	}
-	free(tokI);
+	free(tok);
 }
 
 /**
- * free_paths_array - Frees memory allocated for the paths array
+ * free_paths - Frees memory allocated for the paths array
  * @paths: The paths array to be freed
  * @num_paths: The number of paths in the array
  */
-void free_paths_array(char **paths, int num_paths)
+void free_paths(char **paths, int n_paths)
 {
 	int i;
 
-	for (i = 0; i < num_paths; i++)
+	for (i = 0; i < n_paths; i++)
 	{
 		free(paths[i]);
 	}
