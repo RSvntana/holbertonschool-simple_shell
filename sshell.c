@@ -1,4 +1,4 @@
-#include "test.h"
+#include "shell.h"
 /**
  * main - Entry point for the simple shell program
  * @ac: The argument count (unused)
@@ -16,7 +16,7 @@ int main(int ac, char **av, char **env)
 	while (1)
 	{
 		if (isatty(0))
-			write(STDOUT_FILENO, "$ ", 2);
+			write(STDOUT_FILENO, "😀   ", 5);
 		(void)ac; /* Suppress unused parameter warning */
 		(void)av; /* Suppress unused parameter warning */
 		read = getline(&input, &size, stdin); /* Read user input */
@@ -24,11 +24,14 @@ int main(int ac, char **av, char **env)
 			break;
 		/* Trim leading and trailing whitespace */
 		trimmed = trim(input);
-		if (strcmp(trimmed, "exit") == 0)
-			break;
+		if (strcmp(trimmed, "exit") == 0 || strcmp(trimmed, "quit") == 0 || strcmp(trimmed, "Quit") == 0 || strcmp(trimmed, "Exit") == 0)
+		{
+    printf("Exiting... BYE BYE\n");
+    break;
+}
 		if (trimmed[0] == '\0')
 			continue;
-		Tok(trimmed, env); /* Execute the command entered by the user */
+		Tokenize(trimmed, env); /* Execute the command entered by the user */
 	}
 	free(input); /* Free allocated memory */
 	return (0);	 /* Exit the shell */
@@ -62,27 +65,27 @@ char *trim(char *str)
  * @tokI: The token array to be freed
  * @counter: The number of tokens in the array
  */
-void free_token(char **tokI, int counter)
+void free_token(char **tok, int index)
 {
 	int i;
 
-	for (i = 0; i < counter; i++)
+	for (i = 0; i < index; i++)
 	{
-		free(tokI[i]);
+		free(tok[i]);
 	}
-	free(tokI);
+	free(tok);
 }
 
 /**
- * free_paths_array - Frees memory allocated for the paths array
+ * free_paths - Frees memory allocated for the paths array
  * @paths: The paths array to be freed
  * @num_paths: The number of paths in the array
  */
-void free_paths_array(char **paths, int num_paths)
+void free_paths(char **paths, int number_paths)
 {
 	int i;
 
-	for (i = 0; i < num_paths; i++)
+	for (i = 0; i < number_paths; i++)
 	{
 		free(paths[i]);
 	}

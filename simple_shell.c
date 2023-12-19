@@ -1,4 +1,4 @@
-#include "test.h"
+#include "shell.h"
 
 /**
  * get_path - Get the full path of a command
@@ -6,14 +6,14 @@
  * Return: A dynamically allocated string containing the full path
  *         NULL if the command is not found
  */
-char *get_path(char *com_name)
+char *get_path(char *comd_name)
 {
-	char *com_path = "/bin/";
+	char *comd_path = "/bin/";
 	char *conpath;
 
-	if (access(com_name, X_OK) == 0)
+	if (access(comd_name, X_OK) == 0)
 	{
-		conpath = strdup(com_name);
+		conpath = strdup(comd_name);
 		if (conpath == NULL)
 		{
 			perror("malloc");
@@ -21,13 +21,13 @@ char *get_path(char *com_name)
 		}
 		return (conpath);
 	}
-	conpath = malloc(strlen(com_path) + strlen(com_name) + 1);
+	conpath = malloc(strlen(comd_path) + strlen(comd_name) + 1);
 	if (conpath == NULL)
 	{
 		perror("malloc");
 		return (NULL);
 	}
-	sprintf(conpath, "%s%s", com_path, com_name);
+	sprintf(conpath, "%s%s", comd_path, comd_name);
 	if (access(conpath, X_OK) != 0)
 	{
 		perror("Command not found");
@@ -39,58 +39,58 @@ char *get_path(char *com_name)
 
 
 /**
- * Tok - Tokenize a command string and execute it
+ * Tokenize - Tokenize a command string and execute it
  * @tokI: The command string to tokenize
  * @env: The environment variables
  */
-void Tok(char *tokI, char **env)
+void Tokenize(char *token, char **env)
 {
 	char *tok = NULL;
 	char **tokens = NULL;
-	int counter = 0;
+	int index = 0;
 	char *all_path;
 
-	tok = strtok(tokI, " \n"); /* Tokenize the command string */
+	tok = strtok(token, " \n"); /* Tokenize the command string */
 	if (tok == NULL)
 		return;
 
 	while (tok != NULL)
 	{
-		tokens = realloc(tokens, sizeof(char *) * (counter + 1));
+		tokens = realloc(tokens, sizeof(char *) * (index + 1));
 		if (tokens == NULL)
 		{
 			perror("realloc");
 			return;
 		}
-		tokens[counter] = strdup(tok); /* Store token in tokens array */
-		counter++;					   /* Increment the token count */
+		tokens[index] = strdup(tok); /* Store token in tokens array */
+		index++;					   /* Increment the token count */
 		tok = strtok(NULL, " \n");	   /* Get next token from command string */
 	}
-	tokens = realloc(tokens, sizeof(char *) * (counter + 1));
+	tokens = realloc(tokens, sizeof(char *) * (index + 1));
 	if (tokens == NULL)
 	{
 		perror("realloc");
 		return;
 	}
-	tokens[counter] = NULL; /* Set next element in the array to NULL */
+	tokens[index] = NULL; /* Set next element in the array to NULL */
 	all_path = get_path(tokens[0]); /* Get the full path of the command */
 	if (all_path == NULL)
 	{
-		free_token(tokens, counter);
+		free_token(tokens, index);
 		return;
 	}
 	free(tokens[0]);
 	tokens[0] = all_path;
-	child_creator(tokens, env);
-	free_token(tokens, counter);
+	child_make(tokens, env);
+	free_token(tokens, index);
 }
 
 /**
- * child_creator - Create a child process and execute the command
+ * child_make - Create a child process and execute the command
  * @tokens: The tokenized command and arguments
  * @env: The environment variables
  */
-void child_creator(char **tokens, char **env)
+void child_make(char **tokens, char **env)
 {
 	pid_t pid = fork(); /* Create a child process */
 	int status;
