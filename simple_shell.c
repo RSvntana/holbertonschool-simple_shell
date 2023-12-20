@@ -2,7 +2,7 @@
 
 /**
  * get_path - Get the full path of a command
- * @com_name: The name of the command
+ * @comd_name: The name of the command
  * Return: A dynamically allocated string containing the full path
  *         NULL if the command is not found
  */
@@ -40,7 +40,7 @@ char *get_path(char *comd_name)
 
 /**
  * Tokenize - Tokenize a command string and execute it
- * @tokI: The command string to tokenize
+ * @token: The command string to tokenize
  * @env: The environment variables
  */
 void Tokenize(char *token, char **env)
