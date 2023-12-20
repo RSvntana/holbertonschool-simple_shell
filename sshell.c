@@ -16,7 +16,7 @@ char *trimmed;
 while (1)
 {
 if (isatty(0))
-write(STDOUT_FILENO, "😀   ", 5);
+write(STDOUT_FILENO, "😀  ", 5);
 (void)ac; /* Suppress unused parameter warning */
 (void)av; /* Suppress unused parameter warning */
 read = getline(&input, &size, stdin); /* Read user input */
