@@ -5,7 +5,7 @@
  * Return - Success (0)
 */
 
-int display_prompt()
+int display_prompt(void)
 {
 char *input = NULL;
 size_t input_size = 0;
@@ -24,11 +24,16 @@ input[strcspn(input, "\n")] = '\0';/*remove newline char  from input*/
 
 if (strcmp(input, "exit") == 0)
 {
-printf("EXIT SHELL.\n");
 break;/*Checks if user wishes to exit*/
 }
 printf("ENTERED: %s\n", input);/*this echoes the input*/
 }
 free(input);/*frees dynam alloc memory*/
+return (0);
+}
+
+int main()
+{
+display_prompt();
 return (0);
 }

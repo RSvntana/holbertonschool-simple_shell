@@ -8,8 +8,8 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-void display_prompt();
-void execute_command(const char *command);
+int display_prompt(void);
+int execute_command(const char *command);
 int main(void);
 
 #endif

@@ -3,10 +3,7 @@
 #define MAX_COMMAND_LENGTH 100
 
 /**
- * display_prompt - Displays the shell prompt.
- */
-
-void display_prompt(void)
+ * display_prompt - Displays the shell prompt display_prompt(void)
 {
     printf("simple_shell$ ");
     fflush(stdout);

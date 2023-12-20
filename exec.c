@@ -5,7 +5,7 @@
 /**
  * display_prompt - Displays the shell prompt.
  */
-void display_prompt(void)
+int display_prompt(void)
 {
     printf("simple_shell$ ");
     fflush(stdout);
@@ -15,7 +15,7 @@ void display_prompt(void)
  * execute_command - Forks a child process to execute the given command.
  * @command: The command to be executed.
  */
-void execute_command(const char *command)
+int execute_command(const char *command)
 {
     pid_t pid = fork();
 
@@ -63,18 +63,6 @@ void execute_command(const char *command)
 int main(void)
 {
     char command[MAX_COMMAND_LENGTH];
-
-    while (1)
-    {
-        display_prompt();
-
-        // Read a command from the user
-        if (fgets(command, sizeof(command), stdin) == NULL)
-        {
-            // Handle end-of-file (Ctrl+D)
-            printf("\n");
-            break;
-        }
 
         // Remove the newline character
         size_t len = strlen(command);
