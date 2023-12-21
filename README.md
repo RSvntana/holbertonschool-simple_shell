@@ -1,85 +1,60 @@
-#Simple Shell
+# Simple Shell
 
-##Overview
-This repository contains the source code for a basic UNIX command line interpreter (shell) named simple_shell. The shell was developed as a project for Holberton School, following specific requirements and evolving with each version to incorporate additional features.
+A simple UNIX command line interpreter.
 
-##Project Structure
-The project is structured into different versions, each introducing new functionality. The current versions and their features are outlined below:
+## Overview
 
-###Simple Shell 0.1
+The Simple Shell is a minimalist UNIX shell that provides a basic command line interface.
 
-Handles command lines with arguments.
+## Project Requirements
 
-###Simple Shell 0.2
+- Display a prompt and wait for the user to type a command. A command line always ends with a new line.
+- The prompt is displayed again after each command execution.
+- The command lines are simple; no semicolons, no pipes, no redirections or any other advanced features.
+- The command lines are made only of one word. No arguments will be passed to programs.
+- If an executable cannot be found, print an error message and display the prompt again.
+- Handle errors and the "end of file" condition (Ctrl+D).
 
-Handles the PATH.
-Does not call fork if the command doesn't exist.
+### Additional Concepts
 
-###Simple Shell 0.3
+- Command lines with arguments.
+- Handling the PATH; fork must not be called if the command doesn’t exist.
+- Implementing the exit built-in that exits the shell. Usage: . No arguments are handled for the built-in exit.
+- Implementing the env built-in that prints the current environment.
 
-Implements the exit built-in for shell termination.
-Usage: exit. No arguments are handled for the built-in exit.
+## Compilation
 
-###Simple Shell 0.4
+Compile the shell using the following command:
 
-Implements the env built-in, which prints the current environment.
+```bash
+gcc -Wall -Werror -Wextra -pedantic *.c -o simple_shell
+```
 
-##Project Concepts and Understanding
+## Usage
 
-1. Command Execution: Understanding how to execute commands using the execve system call.
+Run the shell:
 
-2. Process Creation: Utilizing fork to create child processes for command execution.
+```bash
+./simple_shell
+```
 
-3. Built-in Functions: Implementing built-in shell functions, such as exit and env.
+## Example
 
-4. Error Handling: Managing and displaying error messages appropriately.
-
-5. Interactive and Non-Interactive Modes: Handling shell input both interactively and non-interactively.
-
-6. Parsing and Tokenization: Tokenizing user input to understand and execute commands.
-
-7. Environment Variables: Managing and printing environment variables.
-
-##Usage
-####To use the shell interactively:
-
+```bash
 $ ./simple_shell
-($) /bin/ls
-hsh main.c shell.c
-($)
-($) exit
+:) /bin/ls
+file1 file2 file3
+:) ls
+file1 file2 file3
+:) ls -l /tmp
+total 20
+-rw------- 1 user user    0 Dec  5 12:09 example1
+drwx------ 3 root root 4096 Dec  5 12:09 example2
+-rw-rw-r-- 1 user user    0 Dec  5 12:09 example3
+:) exit
 $
+```
+## Authors
 
-####To use the shell non-interactively:
-
-$ echo "/bin/ls" | ./simple_shell
-hsh main.c shell.c test_ls_2
-$
-$ cat test_ls_2
-/bin/ls
-/bin/ls
-$
-$ cat test_ls_2 | ./simple_shell
-hsh main.c shell.c test_ls_2
-hsh main.c shell.c test_ls_2
-$
-
-##Example (Simple Shell 0.4)
-
-$ ./simple_shell
-$ env
-USER=username
-HOME=/home/username
-SHELL=/bin/bash
-PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-$ exit
-$
-
-##Development
-
-The shell is a work in progress and will continue to evolve to meet project requirements and incorporate additional features.
-
-##Authors
-
-Pedro Laguna
-Robert Santana
+- Robert Santana
+- Pedro Laguna
