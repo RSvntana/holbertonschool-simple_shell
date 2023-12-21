@@ -17,9 +17,9 @@ while (1)
 {
 if (isatty(0))
 write(STDOUT_FILENO, "😀  ", 5);
-(void)ac; /* Suppress unused parameter warning */
-(void)av; /* Suppress unused parameter warning */
-read = getline(&input, &size, stdin); /* Read user input */
+(void)ac; 
+(void)av; 
+read = getline(&input, &size, stdin); /* Read input */
 if (read == -1)
 break;
 /* Trim leading and trailing whitespace */
@@ -27,13 +27,13 @@ trimmed = trim(input);
 if (strcmp(trimmed, "exit") == 0 || strcmp(trimmed, "quit") == 0)
 {
 printf("Exiting... BYE BYE\n");
-break;
+exit(0);
 }
 if (trimmed[0] == '\0')
 continue;
-Tokenize(trimmed, env); /* Execute the command entered by the user */
-free(input); /* Free allocated memory */
+Tokenize(trimmed, env);
 }
+free(input);
 return (0);	 /* Exit the shell */
 }
 
