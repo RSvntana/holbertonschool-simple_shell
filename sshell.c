@@ -25,10 +25,7 @@ break;
 /* Trim leading and trailing whitespace */
 trimmed = trim(input);
 if (strcmp(trimmed, "exit") == 0 || strcmp(trimmed, "quit") == 0)
-{
-printf("Exiting... BYE BYE\n");
 exit(0);
-}
 if (trimmed[0] == '\0')
 continue;
 Tokenize(trimmed, env);
