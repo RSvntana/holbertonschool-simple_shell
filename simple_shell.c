@@ -1,5 +1,4 @@
 #include "shell.h"
-
 /**
  * get_path - Get the full path of a command
  * @comd_name: The name of the command
@@ -36,8 +35,6 @@ char *get_path(char *comd_name)
 	}
 	return (conpath);
 }
-
-
 /**
  * Tokenize - Tokenize a command string and execute it
  * @token: The command string to tokenize
@@ -84,6 +81,24 @@ void Tokenize(char *token, char **env)
 	child_make(tokens, env);
 	free_token(tokens, index);
 }
+
+
+
+void exec_com(char *comd, char **env)
+{
+	char *all_path;
+
+	all_path = get_path(comd); /* Get the full path of the command */
+	if (all_path == NULL)
+		return;
+	child_make(&all_path, env);
+	free(all_path);
+}
+
+
+
+
+
 
 /**
  * child_make - Create a child process and execute the command
