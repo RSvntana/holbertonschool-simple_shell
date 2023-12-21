@@ -24,6 +24,7 @@ char *get_path(char *comd_name)
 	if (conpath == NULL)
 	{
 		perror("malloc");
+		free(conpath);
 		return (NULL);
 	}
 	sprintf(conpath, "%s%s", comd_path, comd_name);
@@ -67,6 +68,7 @@ void Tokenize(char *token, char **env)
 	if (tokens == NULL)
 	{
 		perror("realloc");
+		free_token(tokens, index);
 		return;
 	}
 	tokens[index] = NULL; /* Set next element in the array to NULL */
@@ -113,6 +115,7 @@ void child_make(char **tokens, char **env)
 	if (pid == -1)
 	{
 		perror("fork"); /* Print error message if fork fails */
+		free_token(tokens, 0);
 		return;
 	}
 	if (pid == 0)
@@ -124,6 +127,6 @@ void child_make(char **tokens, char **env)
 	else
 	{
 		/* Wait specifically for the child process to complete */
-		waitpid(pid, &status, 0);
+		waitpid(pid, &status, 2);
 	}
 }
