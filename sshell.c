@@ -35,7 +35,6 @@ int main(int ac, char **av, char **env)
 			continue;
 
 		Tokenize(trimmed, env);
-		exec_com(trimmed, env);
 	}
 	free(input);
 	return (0);	 /* Exit */
