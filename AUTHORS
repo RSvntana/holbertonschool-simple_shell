@@ -1,0 +1,22 @@
+# Authors contributing to the Simple Shell project
+
+### Pedro Laguna
+
+<https://github.com/laguna03/holbertonschool-simple_shell>
+
+- int main
+- *trim
+- Tokenize
+- free_token
+- free_paths
+- *get_path
+
+### Robert Santana
+
+<https://github.com/RSvntana/holbertonschool-simple_shell>
+
+-  README.md
+-  man_1_simple_shell
+-  exec_com
+-  child_make
+
