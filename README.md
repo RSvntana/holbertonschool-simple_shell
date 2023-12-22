@@ -1,4 +1,4 @@
-![Simple_Shell](https://github.com/laguna03/holbertonschool-printf/assets/144173998/104dd233-cd3c-4fce-9dad-a18b286266f8)
+![Simple_Shell]()
 
 # Simple Shell
 
