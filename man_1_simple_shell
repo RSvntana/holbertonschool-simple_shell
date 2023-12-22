@@ -1,0 +1,39 @@
+SIMPLE_SHELL(1)               User Commands                SIMPLE_SHELL(1)
+
+NAME
+simple_shell - a basic UNIX command line interpreter
+
+SYNOPSIS
+simple_shell
+
+DESCRIPTION
+The simple_shell command is a minimalist UNIX shell that provides a basic command line interface.
+
+Displays a prompt and waits for the user to type a command. Each command line ends with a newline character.
+The prompt is displayed again after each command execution.
+Commands are simple; no semicolons, pipes, redirections, or advanced features.
+Commands are made of only one word; no arguments will be passed to programs.
+If an executable cannot be found, an error message is printed, and the prompt is displayed again.
+Handles errors and the "end of file" condition (Ctrl+D).
+
+Simple shell 0.1 +
+Handles command lines with arguments.
+
+Simple shell 0.2 +
+Handles the PATH.
+Fork is not called if the command doesn't exist.
+
+Simple shell 0.3 +
+Implements the exit built-in, which exits the shell. Usage: exit. No arguments are handled for the built-in exit.
+
+Simple shell 0.4 +
+Implements the env built-in, which prints the current environment.
+
+AUTHORS
+The simple_shell was developed by Robert Santana and Predro Laguna as listed in the AUTHORS file located at the root of the repository.
+
+COMMANDS
+The simple_shell supports a limited set of commands:
+
+exit: Exits the shell.
+env: Prints the current environment.

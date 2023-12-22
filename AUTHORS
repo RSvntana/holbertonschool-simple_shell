@@ -1,0 +1,26 @@
+# Simple Shell
+
+A simple UNIX command line interpreter.
+
+## Authors
+
+The Simple Shell project is contributed to by the following authors:
+
+1. **Pedro Laguna**
+   - GitHub: [laguna03](https://github.com/laguna03/holbertonschool-simple_shell)
+   - Contributions:
+     - Int matn
+     - *trim
+     - Tokentze
+     - free_token
+     - free_paths
+     - *get_path
+
+2. **Robert Santana**
+   - GitHub: [RSvntana](https://github.com/RSvntana/holbertonschool-simple_shell)
+   - Contributions:
+     - README.md
+     - man_1_simple_shell
+     - exec_con
+     - child_make
+     

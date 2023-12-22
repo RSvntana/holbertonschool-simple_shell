@@ -1,56 +1,68 @@
 #include "shell.h"
 /**
  * main - Entry point for the simple shell program
- * @ac: The argument count (unused)
- * @av: The argument vector (unused)
+ * @av: The argument vector
+ * @ac: The argument count
  * @env: The environment variables
  * Return: Always 0
  */
 int main(int ac, char **av, char **env)
 {
-char *input = NULL;
-size_t size = 0;
-ssize_t read;
-char *trimmed;
+	char *input = NULL;
+	size_t size = 0;
+	ssize_t read;
+	char *trimmed;
 
-while (1)
-{
-if (isatty(0))
-write(STDOUT_FILENO, "😀  ", 5);
-(void)ac; 
-(void)av; 
-read = getline(&input, &size, stdin); /* Read input */
-if (read == -1)
-break;
-/* Trim leading and trailing whitespace */
-trimmed = trim(input);
-if (strcmp(trimmed, "exit") == 0 || strcmp(trimmed, "quit") == 0)
-exit(0);
-if (trimmed[0] == '\0')
-continue;
-Tokenize(trimmed, env);
-}
-free(input);
-return (0);	 /* Exit the shell */
+	(void)ac;
+	(void)av;
+
+	while (1)
+	{
+		if (isatty(0))
+			write(STDOUT_FILENO, "😀  ", 5);
+		read = getline(&input, &size, stdin); /* Read input */
+
+		if (read == -1)
+			break;
+
+		/* Trim leading & trailing Whitespace */
+		trimmed = trim(input);
+
+		if (strcmp(trimmed, "exit") == 0 || strcmp(trimmed, "quit") == 0)
+			exit(0);
+
+		if (trimmed[0] == '\0')
+			continue;
+
+		Tokenize(trimmed, env);
+		exec_com(trimmed, env);
+	}
+	free(input);
+	return (0);	 /* Exit */
 }
 
 /**
- * trim - Remove leading and trailing whitespace from a string
- * @str: The string to trim
+ * trim - trim whitespace from a string
+ * @str: string to trim
  * Return: A pointer to the trimmed string
  */
 char *trim(char *str)
 {
-char *end = str + strlen(str) - 1; /*Pointer to the end of the string */
-/* Remove leading whitespace */
-while (isspace((unsigned char)(*str)))
-str++;
-/* Remove trailing whitespace */
-while (end > str && isspace((unsigned char)*end))
-end--;
-/* Null-terminate the trimmed string */
-*(end + 1) = '\0';
-return (str); /* Return the trimmed string */
+	char *end = str + strlen(str) - 1; /*Pointer to the end of the string */
+
+
+	/* trim leading whitespace */
+	while (isspace((unsigned char)(*str)))
+		str++;
+
+	/* trim trailing whitespace */
+	while (end > str && isspace((unsigned char)*end))
+		end--;
+
+
+	/* Null terminate the trimmed string */
+	*(end + 1) = '\0';
+	return (str); /* Return trimmed string */
 }
 
 /**
@@ -60,13 +72,13 @@ return (str); /* Return the trimmed string */
  */
 void free_token(char **tok, int index)
 {
-int i;
+	int i;
 
-for (i = 0; i < index; i++)
-{
-free(tok[i]);
-}
-free(tok);
+	for (i = 0; i < index; i++)
+	{
+		free(tok[i]);
+	}
+	free(tok);
 }
 
 /**
@@ -76,11 +88,11 @@ free(tok);
  */
 void free_paths(char **paths, int number_paths)
 {
-int i;
+	int i;
 
-for (i = 0; i < number_paths; i++)
-{
-free(paths[i]);
-}
-free(paths);
+	for (i = 0; i < number_paths; i++)
+	{
+		free(paths[i]);
+	}
+	free(paths);
 }
